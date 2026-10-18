@@ -1,1 +1,1 @@
-jssafety-android-1.0.0.apk  8a2a6e049901b1da5ba5bba1e1777e437b6ce77528fd95fb3dcdcdc153b804e2
+jssafety-android-1.0.1.apk  16137674777166e9dcf41ff44d84f82c21ee9f063302e24c7d2a151f9e75b493

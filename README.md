@@ -3,7 +3,8 @@
 把"江苏省大学生安全知识竞赛"的**练习刷题**与**考试答题**搬到手机上：选学校 → 登录 → 选任务 → 自动答题/自动收录题库。
 
 > 📦 **本仓库只发布编译产物（APK），不包含任何源代码，也不公开源代码。**
-> Release APK 已启用 R8 混淆与资源压缩，安装包 2.0 MB。
+> Release APK 已启用 R8 混淆与资源压缩，安装包约 2.0 MB。
+> **1.0.1 起支持版本更新检查**：App 启动时查询本仓库的最新 Release，发现新版本会弹窗提示。
 
 <p align="center">
   <img src="screenshots/login.png" width="30%" alt="登录页" />
@@ -15,21 +16,29 @@
 
 | 文件 | 大小 | 适用 |
 |---|---|---|
-| [`jssafety-android-1.0.0.apk`](jssafety-android-1.0.0.apk) | 2,090,433 B | 日常安装 |
-| [Release v1.0.0](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.0) | 同包 | 带校验值的正式发布页 |
+| [`jssafety-android-1.0.1.apk`](jssafety-android-1.0.1.apk) | 2,106,635 B | 日常安装（最新） |
+| [Release v1.0.1](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.1) | 同包 | 带校验值的正式发布页 |
 
 - 系统要求：**Android 7.0（API 24）及以上**
 - 包名：`com.xiaohan.jssafety`
+- 版本：`1.0.1`（versionCode 2）
 - 签名证书 SHA-256：`c322590104abd7923a394a1d6ddd8883f373697707ff2eab7efff10d0b5df0f5`
-- APK SHA-256：`8a2a6e049901b1da5ba5bba1e1777e437b6ce77528fd95fb3dcdcdc153b804e2`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
+- APK SHA-256：`16137674777166e9dcf41ff44d84f82c21ee9f063302e24c7d2a151f9e75b493`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
 
 安装：
 
 ```bat
-adb install -r jssafety-android-1.0.0.apk
+adb install -r jssafety-android-1.0.1.apk
 ```
 
 或把 APK 传到手机点击安装（需允许"安装未知来源应用"）。
+
+## 版本更新
+
+- App 启动时在后台查询本仓库 GitHub Release 的**最新正式版**（`releases/latest`），发现比当前安装包更新的版本就弹窗提示；自动检查 6 小时最多一次。
+- 弹窗显示当前版本、最新版本、安装包大小与本次更新说明（即 Release 描述），提供 **立即更新 / 稍后 / 忽略此版本** 三个选项。
+- 登录页底部显示「版本 vX.Y.Z」与「检查更新」，可随时手动检查；检查失败（离线 / GitHub 不可达）只写日志，不影响登录答题。
+- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.2`）并附上 APK，旧版本 App 下次启动就会收到提示。
 
 ## 功能
 
@@ -39,6 +48,7 @@ adb install -r jssafety-android-1.0.0.apk
 - **练习模式**：自动创建练习、逐页拉取正确答案并收录进本地题库、自动提交，过程实时日志 + 进度 + 结果卡片
 - **考试模式**：自定义期望分数与每题时长；逐题作答并显示"题库命中 / 题库缺失 / 故意错答"；交卷后显示得分、通过状态、用时与缺失题路径
 - **内置题库**：1000 题随 APK 打包，首启复制到应用私有目录；考试中缺失的题会记录到 `files/missing_questions.json`，可导出补充
+- **版本更新检查**：启动自动查询 GitHub Release，新版本弹窗提示（立即更新 / 稍后 / 忽略此版本），登录页底部可手动检查
 - **深色 Material 界面**：纯原生 Android（非 WebView），登录页实时显示题库题数
 
 ## 使用步骤
@@ -52,6 +62,7 @@ adb install -r jssafety-android-1.0.0.apk
 4. **练习**：进入即自动跑完 10 页并提交，结束后显示"新收录 / 已有 / 无答案"和题库总数。
 5. **考试**：填写期望分数（默认 90）与每题时长（默认 7 秒，**建议 6–9 秒**，过短会被平台判定为无效作答并浪费一次机会），点"开始答题"；结束后查看得分与缺失题记录。
 6. 运行期间**不要**在其它设备或浏览器登录同一账号，否则会顶号导致 401、浪费答题机会。
+7. 有新版本发布后，旧版本 App 启动会自动弹窗；也可以在登录页底部点「检查更新」立即检查。
 
 ## 截图
 
@@ -81,6 +92,7 @@ adb install -r jssafety-android-1.0.0.apk
 ## 隐私与使用声明
 
 - App 只在本地运行；登录凭据仅用于向官方平台（`mars.mycourse.cn`）发起登录与答题请求，不发送给任何第三方，也不做任何上传。
+- 版本更新检查会向 GitHub 发起一次匿名请求（仅读取 Release 元数据，不携带账号、密码或设备标识）；无需更新时可忽略。
 - 题库、缺失题记录都保存在手机本地，不联网同步。
 - 本工具仅供**个人学习交流与自动化技术研究**使用；使用产生的一切后果（包括平台判定、账号风险）由使用者自行承担。
 
