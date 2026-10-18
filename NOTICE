@@ -1,0 +1,11 @@
+江苏省安全知识竞赛助手 · Android 版
+Copyright (c) 2026 miaoliwen
+
+本作品是 "jiangsu-safety-competition"（https://github.com/Scwizard/jiangsu-safety-competition，
+作者：南晓 Scwizard，Apache License 2.0）的 Android 平台移植版本。
+
+本仓库仅以二进制形式发布编译产物（APK），不包含源代码，也不对外提供源代码。
+依据 Apache License 2.0 第 4 条，随二进制分发保留本 NOTICE 与 LICENSE 副本。
+
+本软件按“原样”提供，不附带任何明示或暗示的担保。仅供个人学习交流与自动化技术研究使用，
+使用产生的一切后果由使用者自行承担。
