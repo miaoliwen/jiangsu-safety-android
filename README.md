@@ -74,6 +74,10 @@ adb install -r jssafety-android-1.0.1.apk
 |---|---|
 | ![](screenshots/exam_config.png) | ![](screenshots/practice_error.png) |
 
+| 版本更新弹窗（1.0.1 起，旧版本连真实 Release 实测） |
+|---|
+| ![](screenshots/update_dialog.png) |
+
 ## 题库说明
 
 - 内置 1000 题，安装后位于 `/data/data/com.xiaohan.jssafety/databases/question_bank.db`。
