@@ -1,34 +1,35 @@
-# 江苏省大学生安全知识竞赛助手 · Android 版
+# 喵喵的小脚本 · 江苏省大学生安全知识竞赛 Android 版
 
 把"江苏省大学生安全知识竞赛"的**练习刷题**与**考试答题**搬到手机上：选学校 → 登录 → 选任务 → 自动答题/自动收录题库。
 
 > 📦 **本仓库只发布编译产物（APK），不包含任何源代码，也不公开源代码。**
-> Release APK 已启用 R8 混淆与资源压缩，安装包约 2.0 MB。
+> Release APK 已启用 R8 混淆与资源压缩，安装包约 2.4 MB。
+> **1.0.2 视觉改版（2026-10-21）**：浅色液态玻璃界面、手绘猫猫图标；首页只保留图标与一句问候，学校选择弹窗在支持的设备上带背景模糊。
 > **1.0.1 起支持版本更新检查**：App 启动时查询本仓库的最新 Release，发现新版本会弹窗提示。
 
 <p align="center">
-  <img src="screenshots/login.png" width="30%" alt="登录页" />
-  <img src="screenshots/school_picker.png" width="30%" alt="选择学校" />
-  <img src="screenshots/exam_config.png" width="30%" alt="考试配置" />
+  <img src="screenshots/glass_main.png" width="30%" alt="首页" />
+  <img src="screenshots/glass_school_picker.png" width="30%" alt="选择学校" />
+  <img src="screenshots/glass_exam_config.png" width="30%" alt="考试配置" />
 </p>
 
 ## 下载安装
 
 | 文件 | 大小 | 适用 |
 |---|---|---|
-| [`jssafety-android-1.0.1.apk`](jssafety-android-1.0.1.apk) | 2,106,635 B | 日常安装（最新） |
-| [Release v1.0.1](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.1) | 同包 | 带校验值的正式发布页 |
+| [`jssafety-android-1.0.2.apk`](jssafety-android-1.0.2.apk) | 2,512,503 B | 日常安装（最新） |
+| [`jssafety-android-1.0.1.apk`](jssafety-android-1.0.1.apk) | 2,106,635 B | 旧版存档 |
 
 - 系统要求：**Android 7.0（API 24）及以上**
 - 包名：`com.xiaohan.jssafety`
-- 版本：`1.0.1`（versionCode 2）
+- 版本：`1.0.2`（versionCode 5）
 - 签名证书 SHA-256：`c322590104abd7923a394a1d6ddd8883f373697707ff2eab7efff10d0b5df0f5`
-- APK SHA-256：`16137674777166e9dcf41ff44d84f82c21ee9f063302e24c7d2a151f9e75b493`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
+- APK SHA-256：`1c89b7999190aa4344522ebf26ff5913abb609aa709eaaed09c4a55b035223bd`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
 
 安装：
 
 ```bat
-adb install -r jssafety-android-1.0.1.apk
+adb install -r jssafety-android-1.0.2.apk
 ```
 
 或把 APK 传到手机点击安装（需允许"安装未知来源应用"）。
@@ -38,7 +39,15 @@ adb install -r jssafety-android-1.0.1.apk
 - App 启动时在后台查询本仓库 GitHub Release 的**最新正式版**（`releases/latest`），发现比当前安装包更新的版本就弹窗提示；自动检查 6 小时最多一次。
 - 弹窗显示当前版本、最新版本、安装包大小与本次更新说明（即 Release 描述），提供 **立即更新 / 稍后 / 忽略此版本** 三个选项。
 - 登录页底部显示「版本 vX.Y.Z」与「检查更新」，可随时手动检查；检查失败（离线 / GitHub 不可达）只写日志，不影响登录答题。
-- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.2`）并附上 APK，旧版本 App 下次启动就会收到提示。
+- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.2`）并附上 APK，旧版本 App 下次启动就会收到提示。当前 1.0.2 的 APK 已推送，待创建 `v1.0.2` Release 后旧版本即可收到更新提示。
+
+## 1.0.2 更新内容
+
+- 全新浅色液态玻璃界面：柔和极光背景、半透明玻璃卡片、磨砂输入框与胶囊按钮。
+- 应用图标更换为手绘猫猫；首页仅保留猫猫图标与「已秋 渐寒 添衣 勿病 安好 我很想你」。
+- 学校选择弹窗支持背景模糊（支持的设备）。
+- 考试模式保留「每答完 3 题随机额外等待 7–10 秒」的节流逻辑。
+- 版本号 `1.0.2`（versionCode 5）。
 
 ## 功能
 
@@ -49,7 +58,7 @@ adb install -r jssafety-android-1.0.1.apk
 - **考试模式**：自定义期望分数与每题时长；逐题作答并显示"题库命中 / 题库缺失 / 故意错答"；交卷后显示得分、通过状态、用时与缺失题路径
 - **内置题库**：1000 题随 APK 打包，首启复制到应用私有目录；考试中缺失的题会记录到 `files/missing_questions.json`，可导出补充
 - **版本更新检查**：启动自动查询 GitHub Release，新版本弹窗提示（立即更新 / 稍后 / 忽略此版本），登录页底部可手动检查
-- **深色 Material 界面**：纯原生 Android（非 WebView），登录页实时显示题库题数
+- **浅色液态玻璃界面**：纯原生 Android（非 WebView），柔和极光背景、半透明玻璃卡片与磨砂输入框，学校选择弹窗支持背景模糊
 
 ## 使用步骤
 
@@ -66,15 +75,15 @@ adb install -r jssafety-android-1.0.1.apk
 
 ## 截图
 
-| 登录页（题库 1000 题 / 学校 171 所） | 选择学校 | 已选学校 |
-|---|---|---|
-| ![](screenshots/login.png) | ![](screenshots/school_picker.png) | ![](screenshots/school_selected.png) |
-
-| 考试配置 | 未登录时的错误提示 |
+| 首页（猫猫图标 + 问候） | 选择学校 |
 |---|---|
-| ![](screenshots/exam_config.png) | ![](screenshots/practice_error.png) |
+| ![](screenshots/glass_main.png) | ![](screenshots/glass_school_picker.png) |
 
-| 版本更新弹窗（1.0.1 起，旧版本连真实 Release 实测） |
+| 考试配置 | 练习运行 |
+|---|---|
+| ![](screenshots/glass_exam_config.png) | ![](screenshots/glass_practice.png) |
+
+| 版本更新弹窗（1.0.1 历史截图，旧版深色界面） |
 |---|
 | ![](screenshots/update_dialog.png) |
 
