@@ -18,6 +18,7 @@
 | 文件 | 大小 | 适用 |
 |---|---|---|
 | [`jssafety-android-1.0.2.apk`](jssafety-android-1.0.2.apk) | 2,512,503 B | 日常安装（最新） |
+| [Release v1.0.2](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.2) | 同包 | 正式发布页（含校验值） |
 | [`jssafety-android-1.0.1.apk`](jssafety-android-1.0.1.apk) | 2,106,635 B | 旧版存档 |
 
 - 系统要求：**Android 7.0（API 24）及以上**
@@ -39,7 +40,7 @@ adb install -r jssafety-android-1.0.2.apk
 - App 启动时在后台查询本仓库 GitHub Release 的**最新正式版**（`releases/latest`），发现比当前安装包更新的版本就弹窗提示；自动检查 6 小时最多一次。
 - 弹窗显示当前版本、最新版本、安装包大小与本次更新说明（即 Release 描述），提供 **立即更新 / 稍后 / 忽略此版本** 三个选项。
 - 登录页底部显示「版本 vX.Y.Z」与「检查更新」，可随时手动检查；检查失败（离线 / GitHub 不可达）只写日志，不影响登录答题。
-- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.2`）并附上 APK，旧版本 App 下次启动就会收到提示。当前 1.0.2 的 APK 已推送，待创建 `v1.0.2` Release 后旧版本即可收到更新提示。
+- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.2`）并附上 APK，旧版本 App 下次启动就会收到提示。`v1.0.2` Release 已发布，1.0.1 及更早版本下次启动即可收到更新提示。
 
 ## 1.0.2 更新内容
 
