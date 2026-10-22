@@ -4,6 +4,7 @@
 
 > 📦 **本仓库只发布编译产物（APK），不包含任何源代码，也不公开源代码。**
 > Release APK 已启用 R8 混淆与资源压缩，安装包约 2.4 MB。
+> **1.0.4 公告广播（2026-10-22）**：新增公告广播系统，App 启动时从仓库 `announcement.json` 拉取公告，同一条只提示一次；以后更新公告无需再发新版。
 > **1.0.3 后台驻留（2026-10-22）**：练习/考试可退到后台或锁屏继续运行，状态栏进度通知显示页数/题数、百分比与运行时长；通知内可中止，清除后台即停止。
 > **1.0.2 视觉改版（2026-10-21）**：浅色液态玻璃界面、手绘猫猫图标；首页只保留图标与一句问候，学校选择弹窗在支持的设备上带背景模糊。
 > **1.0.1 起支持版本更新检查**：App 启动时查询本仓库的最新 Release，发现新版本会弹窗提示。
@@ -18,21 +19,22 @@
 
 | 文件 | 大小 | 适用 |
 |---|---|---|
-| [`jssafety-android-1.0.3.apk`](jssafety-android-1.0.3.apk) | 2,559,213 B | 日常安装（最新） |
-| [Release v1.0.3](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.3) | 同包 | 正式发布页（含校验值） |
+| [`jssafety-android-1.0.4.apk`](jssafety-android-1.0.4.apk) | 2,562,770 B | 日常安装（最新） |
+| [Release v1.0.4](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.4) | 同包 | 正式发布页（含校验值） |
+| [`jssafety-android-1.0.3.apk`](jssafety-android-1.0.3.apk) | 2,559,213 B | 旧版存档（后台驻留） |
 | [`jssafety-android-1.0.2.apk`](jssafety-android-1.0.2.apk) | 2,512,503 B | 旧版存档（液态玻璃改版） |
 | [`jssafety-android-1.0.1.apk`](jssafety-android-1.0.1.apk) | 2,106,635 B | 旧版存档 |
 
 - 系统要求：**Android 7.0（API 24）及以上**
 - 包名：`com.xiaohan.jssafety`
-- 版本：`1.0.3`（versionCode 6）
+- 版本：`1.0.4`（versionCode 7）
 - 签名证书 SHA-256：`c322590104abd7923a394a1d6ddd8883f373697707ff2eab7efff10d0b5df0f5`
-- APK SHA-256：`614a5802c2b56fffb826a566bcb3421e97c45ae0bf853ffb02574babaa5ebe2a`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
+- APK SHA-256：`9e9a6e114bdd2ebb5ec2befb6457b624de319e89535b4d23f4bb5393f15a9e82`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
 
 安装：
 
 ```bat
-adb install -r jssafety-android-1.0.3.apk
+adb install -r jssafety-android-1.0.4.apk
 ```
 
 或把 APK 传到手机点击安装（需允许"安装未知来源应用"）。
@@ -42,7 +44,22 @@ adb install -r jssafety-android-1.0.3.apk
 - App 启动时在后台查询本仓库 GitHub Release 的**最新正式版**（`releases/latest`），发现比当前安装包更新的版本就弹窗提示；自动检查 6 小时最多一次。
 - 弹窗显示当前版本、最新版本、安装包大小与本次更新说明（即 Release 描述），提供 **立即更新 / 稍后 / 忽略此版本** 三个选项。
 - 登录页底部显示「版本 vX.Y.Z」与「检查更新」，可随时手动检查；检查失败（离线 / GitHub 不可达）只写日志，不影响登录答题。
-- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.3`）并附上 APK，旧版本 App 下次启动就会收到提示。`v1.0.3` Release 已发布，1.0.2 及更早版本下次启动即可收到更新提示。
+- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.4`）并附上 APK，旧版本 App 下次启动就会收到提示。`v1.0.4` Release 已发布，1.0.3 及更早版本下次启动即可收到更新提示。
+
+## 1.0.4 更新内容
+
+- **公告广播系统**：App 启动时自动拉取仓库公告文件，有新公告时弹窗展示；同一公告只提示一次。
+- 公告维护无需发布新 APK：修改仓库根目录的 `announcement.json` 即可广播。
+- 首条公告：天冷了，多穿点衣服，最近风大，照顾好自己。
+- 更新检查与答题功能保持不变。
+- 版本号 `1.0.4`（versionCode 7）。
+
+## 公告广播
+
+- App 启动时（更新检查之后）拉取仓库根目录的 [`announcement.json`](announcement.json)：优先 `raw.githubusercontent.com`，失败时走 GitHub Contents API；离线或解析失败静默跳过，不影响登录答题。
+- 维护方式：编辑 `announcement.json` 的 `id` / `title` / `content` / `enabled`。发布新公告时换一个新的 `id`，同一 `id` 每台设备只弹一次；`enabled: false` 可关闭公告。
+- 内容为纯文本，建议 2000 字以内；公告弹窗在更新提示关闭后出现。
+- 仅 v1.0.4 及以上版本支持；旧版本仍通过 Release 更新提示升级。
 
 ## 1.0.3 更新内容
 
@@ -69,6 +86,7 @@ adb install -r jssafety-android-1.0.3.apk
 - **练习模式**：自动创建练习、逐页拉取正确答案并收录进本地题库、自动提交，过程实时日志 + 进度 + 结果卡片
 - **考试模式**：自定义期望分数与每题时长；逐题作答并显示"题库命中 / 题库缺失 / 故意错答"；交卷后显示得分、通过状态、用时与缺失题路径
 - **后台驻留**：任务运行时可退到后台/锁屏继续执行；状态栏常驻进度通知，支持通知内中止；从最近任务清除 App 即停止
+- **公告广播**：启动时拉取远端公告，同一公告只提示一次；维护者改 `announcement.json` 即可推送，无需再发新版
 - **内置题库**：1000 题随 APK 打包，首启复制到应用私有目录；考试中缺失的题会记录到 `files/missing_questions.json`，可导出补充
 - **版本更新检查**：启动自动查询 GitHub Release，新版本弹窗提示（立即更新 / 稍后 / 忽略此版本），登录页底部可手动检查
 - **浅色液态玻璃界面**：纯原生 Android（非 WebView），柔和极光背景、半透明玻璃卡片与磨砂输入框，学校选择弹窗支持背景模糊
@@ -86,6 +104,7 @@ adb install -r jssafety-android-1.0.3.apk
 6. 运行期间**不要**在其它设备或浏览器登录同一账号，否则会顶号导致 401、浪费答题机会。
 7. 任务运行中可以退到后台或锁屏，状态栏常驻通知会显示进度；点击通知可回到任务页，通知内的「中止」可停止任务。从最近任务清除 App 会一并停止任务。
 8. 有新版本发布后，旧版本 App 启动会自动弹窗；也可以在登录页底部点「检查更新」立即检查。
+9. 有新公告时，打开 App 会在更新提示之后弹窗；点「知道了」关闭，同一公告不会重复弹出。
 
 ## 截图
 
