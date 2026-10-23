@@ -4,6 +4,7 @@
 
 > 📦 **本仓库只发布编译产物（APK），不包含任何源代码，也不公开源代码。**
 > Release APK 已启用 R8 混淆与资源压缩，安装包约 2.4 MB。
+> **1.0.5 性能优化（2026-10-23）**：运行更顺、更省电。状态栏进度通知改为合并刷新，长考试不再反复刷新通知；运行日志改为增量追加，重回答题页不再重排几百行；修复日志级别颜色；启动时的读盘操作挪到后台。答题与公告逻辑不变。
 > **1.0.4 公告广播（2026-10-22）**：新增公告广播系统，App 启动时从仓库 `announcement.json` 拉取公告，同一条只提示一次；以后更新公告无需再发新版。
 > **1.0.3 后台驻留（2026-10-22）**：练习/考试可退到后台或锁屏继续运行，状态栏进度通知显示页数/题数、百分比与运行时长；通知内可中止，清除后台即停止。
 > **1.0.2 视觉改版（2026-10-21）**：浅色液态玻璃界面、手绘猫猫图标；首页只保留图标与一句问候，学校选择弹窗在支持的设备上带背景模糊。
@@ -19,22 +20,23 @@
 
 | 文件 | 大小 | 适用 |
 |---|---|---|
-| [`jssafety-android-1.0.4.apk`](jssafety-android-1.0.4.apk) | 2,562,770 B | 日常安装（最新） |
-| [Release v1.0.4](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.4) | 同包 | 正式发布页（含校验值） |
+| [`jssafety-android-1.0.5.apk`](jssafety-android-1.0.5.apk) | 2,563,315 B | 日常安装（最新） |
+| [Release v1.0.5](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.5) | 同包 | 正式发布页（含校验值） |
+| [`jssafety-android-1.0.4.apk`](jssafety-android-1.0.4.apk) | 2,562,770 B | 旧版存档（公告广播） |
 | [`jssafety-android-1.0.3.apk`](jssafety-android-1.0.3.apk) | 2,559,213 B | 旧版存档（后台驻留） |
 | [`jssafety-android-1.0.2.apk`](jssafety-android-1.0.2.apk) | 2,512,503 B | 旧版存档（液态玻璃改版） |
 | [`jssafety-android-1.0.1.apk`](jssafety-android-1.0.1.apk) | 2,106,635 B | 旧版存档 |
 
 - 系统要求：**Android 7.0（API 24）及以上**
 - 包名：`com.xiaohan.jssafety`
-- 版本：`1.0.4`（versionCode 7）
+- 版本：`1.0.5`（versionCode 8）
 - 签名证书 SHA-256：`c322590104abd7923a394a1d6ddd8883f373697707ff2eab7efff10d0b5df0f5`
-- APK SHA-256：`9e9a6e114bdd2ebb5ec2befb6457b624de319e89535b4d23f4bb5393f15a9e82`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
+- APK SHA-256：`fe19d3498aef95bd24cce4e180da26f4a1662ca31b5391de2dfcf682cba2303e`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
 
 安装：
 
 ```bat
-adb install -r jssafety-android-1.0.4.apk
+adb install -r jssafety-android-1.0.5.apk
 ```
 
 或把 APK 传到手机点击安装（需允许"安装未知来源应用"）。
@@ -44,7 +46,15 @@ adb install -r jssafety-android-1.0.4.apk
 - App 启动时在后台查询本仓库 GitHub Release 的**最新正式版**（`releases/latest`），发现比当前安装包更新的版本就弹窗提示；自动检查 6 小时最多一次。
 - 弹窗显示当前版本、最新版本、安装包大小与本次更新说明（即 Release 描述），提供 **立即更新 / 稍后 / 忽略此版本** 三个选项。
 - 登录页底部显示「版本 vX.Y.Z」与「检查更新」，可随时手动检查；检查失败（离线 / GitHub 不可达）只写日志，不影响登录答题。
-- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.4`）并附上 APK，旧版本 App 下次启动就会收到提示。`v1.0.4` Release 已发布，1.0.3 及更早版本下次启动即可收到更新提示。
+- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.5`）并附上 APK，旧版本 App 下次启动就会收到提示。`v1.0.5` Release 已发布，1.0.4 及更早版本下次启动即可收到更新提示。
+
+## 1.0.5 更新内容
+
+- **通知刷新更省电**：状态栏进度通知合并刷新，不再每写一行日志就刷新一次；长考试时更省电、更跟手。
+- **日志刷新更轻快**：运行日志改为增量追加，重新进入答题页时不再一次性重排几百行。
+- **修复日志颜色**：成功 / 警告 / 错误级别的颜色现在正常显示。
+- **启动少一点阻塞**：读配置的磁盘操作挪到后台线程。
+- 答题、公告、更新检查逻辑均不变；版本号 `1.0.5`（versionCode 8）。
 
 ## 1.0.4 更新内容
 
