@@ -4,6 +4,7 @@
 
 > 📦 **本仓库只发布编译产物（APK），不包含任何源代码，也不公开源代码。**
 > Release APK 已启用 R8 混淆与资源压缩，安装包约 2.4 MB。
+> **1.0.6 全新版本（2026-10-24）**：在 1.0.5 基础上发布，执行速度优化全部保留：时间间隔 1 秒，两分钟内即可完成；随机额外等待为每 50 题一次。已安装 1.0.5 的用户这次会收到更新弹窗。
 > **1.0.5 提速更新（2026-10-24）**：执行速度大幅优化，时间间隔改为 1 秒，两分钟内即可完成；随机额外等待改为每 50 题才触发一次。状态栏通知合并刷新、运行日志增量追加，跑长任务更省电、更跟手。最近风大，注意保暖！
 > **1.0.4 公告广播（2026-10-22）**：新增公告广播系统，App 启动时从仓库 `announcement.json` 拉取公告，同一条只提示一次；以后更新公告无需再发新版。
 > **1.0.3 后台驻留（2026-10-22）**：练习/考试可退到后台或锁屏继续运行，状态栏进度通知显示页数/题数、百分比与运行时长；通知内可中止，清除后台即停止。
@@ -20,8 +21,9 @@
 
 | 文件 | 大小 | 适用 |
 |---|---|---|
-| [`jssafety-android-1.0.5.apk`](jssafety-android-1.0.5.apk) | 2,563,312 B | 日常安装（最新） |
-| [Release v1.0.5](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.5) | 同包 | 正式发布页（含校验值） |
+| [`jssafety-android-1.0.6.apk`](jssafety-android-1.0.6.apk) | 2,563,318 B | 日常安装（最新） |
+| [Release v1.0.6](https://github.com/miaoliwen/jiangsu-safety-android/releases/tag/v1.0.6) | 同包 | 正式发布页（含校验值） |
+| [`jssafety-android-1.0.5.apk`](jssafety-android-1.0.5.apk) | 2,563,312 B | 旧版存档（提速更新） |
 | [`jssafety-android-1.0.4.apk`](jssafety-android-1.0.4.apk) | 2,562,770 B | 旧版存档（公告广播） |
 | [`jssafety-android-1.0.3.apk`](jssafety-android-1.0.3.apk) | 2,559,213 B | 旧版存档（后台驻留） |
 | [`jssafety-android-1.0.2.apk`](jssafety-android-1.0.2.apk) | 2,512,503 B | 旧版存档（液态玻璃改版） |
@@ -29,14 +31,14 @@
 
 - 系统要求：**Android 7.0（API 24）及以上**
 - 包名：`com.xiaohan.jssafety`
-- 版本：`1.0.5`（versionCode 8）
+- 版本：`1.0.6`（versionCode 9）
 - 签名证书 SHA-256：`c322590104abd7923a394a1d6ddd8883f373697707ff2eab7efff10d0b5df0f5`
-- APK SHA-256：`fdbb5dcbd69d487a40961c67c0b7523d17091a96089389d2657150a93828c233`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
+- APK SHA-256：`da0d7fedaa3d07db331731b0cb315dc82b113d08cb8067bdff15225ca8c95027`（同 [`SHA256SUMS.txt`](SHA256SUMS.txt)）
 
 安装：
 
 ```bat
-adb install -r jssafety-android-1.0.5.apk
+adb install -r jssafety-android-1.0.6.apk
 ```
 
 或把 APK 传到手机点击安装（需允许"安装未知来源应用"）。
@@ -46,7 +48,15 @@ adb install -r jssafety-android-1.0.5.apk
 - App 启动时在后台查询本仓库 GitHub Release 的**最新正式版**（`releases/latest`），发现比当前安装包更新的版本就弹窗提示；自动检查 6 小时最多一次。
 - 弹窗显示当前版本、最新版本、安装包大小与本次更新说明（即 Release 描述），提供 **立即更新 / 稍后 / 忽略此版本** 三个选项。
 - 登录页底部显示「版本 vX.Y.Z」与「检查更新」，可随时手动检查；检查失败（离线 / GitHub 不可达）只写日志，不影响登录答题。
-- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.5`）并附上 APK，旧版本 App 下次启动就会收到提示。`v1.0.5` Release 已发布，1.0.4 及更早版本下次启动即可收到更新提示。
+- **发布新版本**：在本仓库创建 Release（tag 形如 `v1.0.6`）并附上 APK，旧版本 App 下次启动就会收到提示。`v1.0.6` Release 已发布，1.0.5 及更早版本下次启动即可收到更新提示。
+
+## 1.0.6 更新内容
+
+- **全新版本**：在 1.0.5 基础上重新打包，执行速度优化全部保留。
+- **时间间隔 1 秒**：可在两分钟之内完成。
+- **额外等待更少**：随机额外等待为每答完 50 题一次，不再频繁打断。
+- 已安装 1.0.5 的用户本次会收到更新弹窗；公告、题库与更新检查逻辑不变。
+- 最近风大，注意保暖！版本号 `1.0.6`（versionCode 9）。
 
 ## 1.0.5 更新内容
 
